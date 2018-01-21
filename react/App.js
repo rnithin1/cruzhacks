@@ -30,10 +30,10 @@ export default class BadInstagramCloneApp extends Component {
     RNNode.start(['--port', '5001']);
   }
 
-  sendRequest() {
+  sendRequest(path) {
     const data = new FormData();
     data.append('photo', {
-      uri: 'file:///storage/emulated/0/DCIM/IMG_20180120_110956.jpg',
+      uri: path,
       type : 'image/jpg',
       name : "gaurav.jpg"
     });
@@ -64,7 +64,7 @@ export default class BadInstagramCloneApp extends Component {
           <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
         </Camera>
         <Image source = {pic} style = {{width: 100, height: 100}}/>
-        <Text style={styles.button} onPress={() => this.sendRequest()}>
+        <Text style={styles.button} onPress={() => this.sendRequest(pic.uri)}>
           {this.state.msg}
         </Text>
       </View>
@@ -76,7 +76,7 @@ export default class BadInstagramCloneApp extends Component {
     //options.location = ...
     console.log("picture taken");
     this.camera.capture({metadata: options})
-      .then((data) => console.log(data))
+      .then((data) => this.sendRequest(data.path))
       .catch(err => console.error(err));
   }
 
