@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Otsu threshold</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
+        <script type="text/javascript" src="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraphcore.js"></script>
+        <script type="text/javascript" src="otsu.js"></script>
+    </head>
+    <body>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <img id="otsu-test-src" border="0" src="lena.jpg" width="320" onload="update();" />
+                    </td>
+                    <td>
+                        <canvas id="otsu-test-dst" width="320"></canvas>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="jxgbox" id="otsu-histogram" style="height: 250px; width: 640px;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="file" name="image-load" id="image-load" onchange="loadImage(this);" alt="" />
+                    </td>
+                </tr>
+				<!--
+                <tr>
+                    <td colspan="2">
+                        N° of classes: 
+                        <select id="n-classes" onchange="onNClassesChanged(this);">
+                            <option value="3">3</option>
+                        </select>
+                    </td>
+                </tr> -->
+                <tr>
+                    <td colspan="2">
+                        Thresholds: <input id="thresholds-results" type="text" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
