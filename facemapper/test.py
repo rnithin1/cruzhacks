@@ -4,7 +4,6 @@ import imutils
 from imutils.video import VideoStream
 
 def show_webcam():
-	cam = cv2.VideoCapture(0)
 
 	face_cascade = cv2.CascadeClassifier('haarcascadefull.xml')
 
