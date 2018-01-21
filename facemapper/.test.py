@@ -4,17 +4,24 @@ import imutils
 from scipy.interpolate import splprep, splev
 import scipy
 import os
+import argparse
+
+ap = argparse.ArgumentParser()
+ap.add_argument("-p", required=True)
+ap.add_argument("-t", required=True)
+args = vars(ap.parse_args())
+
 
 def run():
 
 	# Copying the frame to be used as a reference point
 	# Frame1 will be binarized, 2 will be reference and 3
 	# will be used for facial detection purposes
-	frame = cv2.imread('kevin1.jpg')
+	frame = cv2.imread(args["p"]) #gaurav.jpg
 	y, x, c = frame.shape #4032x3024
 	print(y, x, c)
 
-	simg = cv2.imread('../tshirt2.png')
+	simg = cv2.imread(args["t"]) #tshirt6.png
 	ys, xs, cs = simg.shape
 
 	diff_y, diff_x = min(y, ys) / max(y, ys), min(x, xs) / max(x, xs)
@@ -141,10 +148,11 @@ def run():
 	#scx, scy for shirt
 	rows, cols= simg.shape
 	from scipy import ndimage
-	M = np.float32([[1, 0, cx - scx], [0, 1, cy + 210]])
+	cy += 795
+	M = np.float32([[1, 0, cx - scx], [0, 1, cy - scy]])
 	new_shirt = cv2.warpAffine(simg2, M, (cols, rows))
 
-	cv2.imwrite('crap.png', cv2.addWeighted(new_shirt, 0.65, frame2, 0.35, 0))
+	cv2.imwrite('verloren.png', cv2.addWeighted(new_shirt, 0.55, frame2, 0.45, 0))
 	
 	
 
