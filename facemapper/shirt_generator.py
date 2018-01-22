@@ -3,7 +3,7 @@ import numpy as np
 import imutils
 from scipy.interpolate import splprep, splev
 import scipy
-import os
+import sys, os
 import argparse
 
 ap = argparse.ArgumentParser()
@@ -44,9 +44,12 @@ def run():
 	gray = cv2.cvtColor(frame3, cv2.COLOR_BGR2GRAY)
 	faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 	for (a,b,c,d) in faces:
-		cv2.rectangle(frame3,(a,b),(a+c,b+d),(255,0,0),2)
-	facial_lower_bound = b + d 
-
+		try:
+			cv2.rectangle(frame3,(a,b),(a+c,b+d),(255,0,0),2)
+			facial_lower_bound = b + d
+		except:
+			sys.exit("Could not detect a face. Please try again.")
+			
 	# Binarizes the image using Otsu's algorithm
 	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)                    
 	frame = cv2.threshold(gray, 0, 255, cv2.THRESH_OTSU)[1] 
