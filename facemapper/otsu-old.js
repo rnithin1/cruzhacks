@@ -176,34 +176,5 @@ function drawResult(thresholds, classes)
     fs.writeFile('image.png', buf);
     //img.save('changed.png');
 } 
-
-/*
-function update()
-{
-    var img = readImage("otsu-test-src");
-    var hist = histogram(img); //Put histogram
-
-    //var classes = document.getElementById("n-classes");
-    var nclasses = 3;
-
-    var thresholds = otsu(hist, nclasses);
-
-    var thresholdsResults = document.getElementById("thresholds-results");
-    thresholdsResults.value = thresholds.toString();
-    drawResult(thresholds, nclasses);
-} 
-
-function loadImage(element)
-{
-    var reader = new FileReader();
-
-    reader.onload = function (e) {
-        var img = document.getElementById("otsu-test-src");
-        img.src = e.target.result;
-    }
-
-    reader.readAsDataURL(element.files[0]);
-}
-*/
 });
 
