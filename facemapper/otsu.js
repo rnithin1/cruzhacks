@@ -18,7 +18,7 @@
 		canvas.width  = img.width;
 		canvas.height = img.height;
 		var ctx = canvas.getContext("2d");
-		ctx.drawImage(img, 0, 0, canvas.width, canvas.height); 
+		ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
 		var data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
         console.log(data); // uint8clampedarray
@@ -166,7 +166,7 @@
         console.log(img);
 		var hist = histogram(img);
 
-		var nclasses = 2;
+		var nclasses = 4;
 
 		var thresholds = otsu(hist, nclasses);
 
